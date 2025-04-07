@@ -4,8 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golf Vacation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
-    
+    <header>
+        <h1>Plan Your Golf Vacation</h1>
+        <p>Fill out the form below to schedule your group golf trip!</p>
+    </header>
+    <form action="/submit" method="POST" id="trip-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" placeholder="Enter first name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" placeholder="Enter last name" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="budget-type">Budget Type</label>
+                <select id="budget-type" name="budget_type" required>
+                    <option value="" disabled selected>Select Budget Type</option>
+                    <option value="per-person">Per Person Budget</option>
+                    <option value="total-trip">Total Trip Budget</option>
+                </select>
+            </div>
+            <div class="form-group" id="per-person-budget-container" style="display: none;">
+                <label for="per-person-budget">Per Person Budget ($)</label>
+                <input type="number" id="per-person-budget" name="per_person_budget" placeholder="Enter per person budget">
+            </div>
+            <div class="form-group" id="group-total-budget-container" style="display: none;">
+                <label for="group-total-budget">Group Total Budget ($)</label>
+                <input type="number" id="group-total-budget" name="group_total_budget" placeholder="Enter total group budget">
+            </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group">
+            <label for="group-size">Group Size</label>
+            <input type="number" id="group-size" name="group_size" placeholder="Enter group size" required>
+        </div>
+
+        </div>
+
+        <div id="departure-locations">
+            <h3>Departure Locations</h3>
+            <div class="departure-location">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departure-1">Location (City, State)</label>
+                        <input type="text" id="departure-1" name="departure_locations[]" placeholder="Enter departure location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="departure-count-1">Number of People</label>
+                        <input type="number" id="departure-count-1" name="departure_counts[]" placeholder="Enter number of people" required>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <button type="button" id="add-location">Add Another Location</button>
+        <p id="location-warning" style="color: red; display: none;">The total number of people must match the group size.</p>
+        <br><br>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="destination">Preferred Destination</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter destination" required>
+            </div>
+            <div class="form-group">
+                <label for="dates">Preferred Dates</label>
+                <input type="date" id="dates" name="dates" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="comments">Additional Comments</label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Enter any additional details or requests"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
