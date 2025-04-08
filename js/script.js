@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const budgetTypeSelect = document.getElementById('budget-type');
     const perPersonBudgetContainer = document.getElementById('per-person-budget-container');
     const groupTotalBudgetContainer = document.getElementById('group-total-budget-container');
+    const perPersonBudgetInput = document.getElementById('per-person-budget');
+    const groupTotalBudgetInput = document.getElementById('group-total-budget');
 
     // Show/hide budget fields based on selection
     budgetTypeSelect.addEventListener('change', () => {
@@ -10,12 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedValue === 'per-person') {
             perPersonBudgetContainer.style.display = 'block';
             groupTotalBudgetContainer.style.display = 'none';
+            perPersonBudgetInput.disabled = false;
+            groupTotalBudgetInput.disabled = true;
         } else if (selectedValue === 'total-trip') {
             perPersonBudgetContainer.style.display = 'none';
             groupTotalBudgetContainer.style.display = 'block';
+            perPersonBudgetInput.disabled = true;
+            groupTotalBudgetInput.disabled = false;
         } else {
             perPersonBudgetContainer.style.display = 'none';
             groupTotalBudgetContainer.style.display = 'none';
+            perPersonBudgetInput.disabled = true;
+            groupTotalBudgetInput.disabled = true;
         }
     });
 
@@ -73,5 +81,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset warning when group size changes
     groupSizeInput.addEventListener('input', () => {
         locationWarning.style.display = 'none';
+    });
+
+    const golfDaysSelect = document.getElementById('golf-days');
+    const golfHolesContainer = document.getElementById('golf-holes-container');
+
+    // Generate golf holes per day based on the selected number of days
+    golfDaysSelect.addEventListener('change', () => {
+        const numberOfDays = parseInt(golfDaysSelect.value, 10);
+        golfHolesContainer.innerHTML = ''; // Clear previous content
+
+        if (numberOfDays) {
+            golfHolesContainer.style.display = 'block';
+
+            for (let day = 1; day <= numberOfDays; day++) {
+                const dayContainer = document.createElement('div');
+                dayContainer.classList.add('form-row');
+                dayContainer.innerHTML = `
+                    <h5>Day ${day}</h5>
+                    <div class="form-group">
+                        <div class="radio-group">
+                            <label><input type="radio" name="holes_day_${day}" value="9" required> 9 Holes</label>
+                            <label><input type="radio" name="holes_day_${day}" value="18" required> 18 Holes</label>
+                            <label><input type="radio" name="holes_day_${day}" value="27" required> 27 Holes</label>
+                            <label><input type="radio" name="holes_day_${day}" value="36" required> 36 Holes</label>
+                        </div>
+                    </div>
+                `;
+                golfHolesContainer.appendChild(dayContainer);
+            }
+        } else {
+            golfHolesContainer.style.display = 'none';
+        }
     });
 });
