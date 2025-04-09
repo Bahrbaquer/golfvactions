@@ -11,9 +11,9 @@ header {
     text-align: center;
 }
 form {
-    max-width: 600px;
-    margin: 2rem auto;
+    max-width: 100%; /* Ensure the form fits within the screen width */
     padding: 1rem;
+    box-sizing: border-box; /* Include padding in the width calculation */
     background: white;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -132,17 +132,20 @@ button:hover {
 .radio-group {
     display: flex;
     flex-direction: column; /* Stack items vertically */
-    gap: 10px; /* Add spacing between items */
+    gap: 5px; /* Reduce spacing between items */
     margin-top: 5px;
+    align-items: flex-start; /* Align all items to the left */
 }
 
 .radio-group label {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    align-items: center; /* Align radio button and text vertically */
+    gap: 8px; /* Add small spacing between the radio button and text */
     font-size: 14px;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
 }
 
 .radio-group input[type="radio"] {
-    margin: 0;
+    margin: 0; /* Remove extra margin around the radio button */
+    flex-shrink: 0; /* Prevent the radio button from shrinking */
 }
