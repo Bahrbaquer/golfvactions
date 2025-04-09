@@ -176,7 +176,9 @@ button:hover {
 
 /* Hero Section */
 .hero {
-    background: url('../images/copperRock.jpg') no-repeat center center/cover;
+    background: url('../images/copperRock.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-attachment:fixed;
     height: 100vh;
     display: flex;
@@ -207,7 +209,6 @@ button:hover {
     text-align: center;
     color: white;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    
 }
 
 @media (max-width: 768px) {
