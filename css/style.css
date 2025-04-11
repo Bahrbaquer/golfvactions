@@ -189,6 +189,7 @@ button:hover {
     color: white;
     padding: 0 20px;
     position: relative;
+
 }
 .overlayDark {
     position:absolute;
@@ -249,13 +250,13 @@ button:hover {
     margin: 0 auto;
 }
 
-/* Featured Courses Section */
-.featured-courses {
+/* Featured Package Section */
+.featured-packages {
     padding: 50px 20px;
     text-align: center;
 }
 
-.featured-courses h2 {
+.featured-packages h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
 }
@@ -265,26 +266,58 @@ button:hover {
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .course {
-    max-width: 300px;
-    text-align: center;
+    width: 300px;
+    aspect-ratio: 1/2;
     margin-bottom: 20px; /* Add spacing between each course */
+    background-color: white;
+    position: relative;
+    cursor: pointer;
 }
 
 .course img {
     width: 100%;
+    height:33%;
+    position: absolute;
+    z-index: 0;
+    top:0;
+    left:0;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px; /* Add spacing between the image and the text */
 }
-
-.course h3 {
+.course .featured-course-information {
+    position:absolute;
+    top:33%;
+    left:0;
+    padding:.8rem;
+    height:66%;
+}
+.featured-course-information h3 {
     margin: 0;
     font-size: 1.2rem;
+    color: #2c3e50;
+    width:100%;
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+    font-weight: 100;
+    text-align: left;
 }
-
+.featured-course-information h4 {
+    text-align: left;
+    font-weight: 100;
+}
+.featured-course-information .cta-button {
+    bottom: 2rem;
+    position: absolute;
+    left: 50%;
+    white-space: nowrap;
+    transform: translate(-50%, 0);
+}
 /* Footer */
 footer {
     text-align: center;
