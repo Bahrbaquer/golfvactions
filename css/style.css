@@ -106,8 +106,11 @@ header {
 }
 
 .mainNav ul li a {
-    color: black;
+    color: #333;
+    font-weight:700;
+    font-variant: small-caps;
 }
+
 .hero-content {
     position:relative;
     z-index: 2;
