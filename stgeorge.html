@@ -11,13 +11,12 @@
 <body class="stGeorgeform">
     <header>
         <a href="index.html"><img src="images/logo.png" class="logoalt" alt=""></a>
-        <h1>St. George, UT</h1>
-        <p>Fill out the form below to customize your group golf trip!</p>
+        <p>Customize your golf trip in <br>St. George UT!</p>
     </header>
     <div id="price-estimate">
         <h3>Estimated Price: <span id="price">$0</span></h3>
     </div>
-    <form action="/submit" method="POST" id="trip-form">
+    <form action="" method="GET" id="trip-form">
         <!-- Contact Information Section
         <div id="contact-information">
             <h3>Contact Information</h3>
@@ -48,7 +47,7 @@
             <h3>Trip Information</h3>
                 <div class="form-group">
                     <p><span class="standout">Start of Trip</span> is the date you want to arrive in St. George. <br>
-                    <span class="standout">End of Trip</span> is the date you you want to arrive back Home</p>
+                    <span class="standout">End of Trip</span> is the date you you want to arrive back Home.</p>
                     <div class="form-row-2">
                         <div>
                             <label for="start-of-trip">Start of Trip</label>
@@ -63,18 +62,7 @@
                     <p id="totalDays" class="standout"></p>
                     
                 </div>
-                <div class="form-group">
-                    <label for="golf-days">Number of Golf Days</label>
-                    <select id="golf-days" name="golf_days" required>
-                        <option value="" disabled selected>Select Number of Golf Days</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                    </select>
-                </div>
+
                 <div class="form-group">
                     <label for="group-size">Group Size</label>
                     <input type="number" id="group-size" name="group_size" placeholder="Enter group size" required>
