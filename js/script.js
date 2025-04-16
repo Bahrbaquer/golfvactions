@@ -95,24 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const minStartDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000); // Add 14 days
     const minStartDateString = minStartDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
 
-    // Set the minimum start date
+    // Set the minimum start date immediately
     startInput.min = minStartDateString;
 
-    // Validate the start date on input
-    startInput.addEventListener('input', () => {
+    // Ensure the end date cannot be earlier than the start date
+    startInput.addEventListener('change', () => {
         const startDate = new Date(startInput.value);
         if (startDate < minStartDate) {
             alert(`Start date must be at least 2 weeks from today (${minStartDateString}).`);
             startInput.value = ''; // Clear invalid input
-        }
-        // Update the minimum end date based on the selected start date
-        if (startInput.value) {
-            endInput.min = startInput.value;
+        } else {
+            endInput.min = startInput.value; // Update the minimum end date
         }
     });
 
-    // Validate the end date on input
-    endInput.addEventListener('input', () => {
+    endInput.addEventListener('change', () => {
         const startDate = new Date(startInput.value);
         const endDate = new Date(endInput.value);
         if (endDate < startDate) {
