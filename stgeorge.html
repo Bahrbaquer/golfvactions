@@ -13,9 +13,6 @@
         <a href="index.html"><img src="images/logo.png" class="logoalt" alt=""></a>
         <p>Customize your golf trip in <br>St. George UT!</p>
     </header>
-    <div id="price-estimate">
-        <h3>Estimated Price: <span id="price">$0</span></h3>
-    </div>
     <form action="" method="GET" id="trip-form">
 
         <!-- Page 1: Trip Information -->
@@ -37,14 +34,12 @@
             <button type="button" id="next-to-page-2">Next</button>
         </div>
     
-       <!-- Page 2: Group Information -->
+      <!-- Page 2: Group Information -->
         <div class="form-page" id="page-2" style="display: none;">
             <h3>Group Information</h3>
-            <div class="form-group">
-                <label for="group-size">Group Size (Max 20)</label>
-                <input type="number" id="group-size" min="1" max="20" required>
-            </div>
             <div id="group-details"></div>
+            <button type="button" id="add-golfer">Add Golfer</button>
+
             <button type="button" id="back-to-page-1">Back</button>
             <button type="button" id="next-to-page-3">Next</button>
         </div>
@@ -60,6 +55,10 @@
     </form>
     <div id="summary-table-container" style="display: none;">
         <h4>Summary</h4>
+        <div id="price-estimate">
+            <h3>Estimated Price: <span id="price">$0</span></h3>
+        </div>
+        <p>Total Golfers: <span id="total-golfers">0</span></p>
         <table id="summary-table" border="1">
             <thead>
                 <tr>

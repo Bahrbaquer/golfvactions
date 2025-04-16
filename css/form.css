@@ -43,31 +43,26 @@ form h3 {
 textarea {
     resize: vertical;
 }
+
 .standout {
     font-weight: bold;
     font-style: italic;
 }
-/* Flexbox for Side-by-Side Layout */
-.form-row-2 {
+
+/* Flexbox for Layout */
+.flex-container {
     display: flex;
-    gap: 20px; /* Space between the two columns */
+    gap: 20px;
+    align-items: center;
 }
 
-.form-row-2 .form-group {
-    flex: 1; /* Ensure both columns take up equal space */
-    margin-bottom: 0; /* Remove extra margin for side-by-side layout */
+.flex-container .form-group {
+    flex: 1;
+    margin-bottom: 0;
 }
 
-.form-row-2 label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-.form-row-2 input {
-    width:auto;
-}
 /* Button Styles */
 button {
-    display: inline;
     padding: 10px 15px;
     background-color: #28a745;
     color: white;
@@ -82,21 +77,14 @@ button:hover {
     background-color: #218838;
 }
 
-/* Price Estimate Section */
-#price-estimate {
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
+#add-golfer {
+    background-color: #333;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: .8rem;
 }
 
-#price-estimate h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #2c3e50;
-}
+/* Form Pages */
 .form-page {
     display: none;
 }
@@ -105,37 +93,38 @@ button:hover {
     display: block;
 }
 
+/* Trip Days */
 #trip-days {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
 }
+
 .trip-day {
     width: 100%;
-    padding: 0 .5rem;
     box-sizing: border-box;
     box-shadow: 0px 0px 5px #0000004a;
     border-radius: 10px;
     margin: .5rem;
     padding: .5rem 1rem;
+    background-color: #f9f9f9;
 }
-.trip-day h4 {
+
+.trip-day h4, .trip-day h6 {
     text-align: center;
     margin: 0;
     padding: 0;
 }
-.trip-day h6 {
-    font-size: .8rem;
-    text-align: center;
-    margin:0;
-    padding:0;
-}
+
 .trip-day label {
-    display:inline;
-    margin-bottom:0;
+    display: inline;
+    margin-bottom: 0;
 }
+
 .trip-day input {
-    width:auto;
+    width: auto;
 }
+
+/* Golfer Details */
 .golfer-details {
     margin-bottom: 15px;
     padding: 10px;
@@ -143,6 +132,8 @@ button:hover {
     border-radius: 5px;
     background-color: #f9f9f9;
 }
+
+/* Summary Table */
 #summary-table-container {
     padding: .8rem;
     background-color: #000000cc;
@@ -150,6 +141,7 @@ button:hover {
     border-radius: 10px;
     color: white;
 }
+
 #summary-table {
     width: 100%;
     border-collapse: collapse;
@@ -163,5 +155,26 @@ button:hover {
 
 #summary-table th {
     background-color: #f4f4f4;
-    color:black;
+    color: black;
+}
+
+.remove-golfer {
+    background-color: red;
+    margin-left: 2rem;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.remove-golfer:hover {
+    background-color: darkred;
+}
+
+/* Responsive Design */
+@media (max-width: 810px) {
+    form {
+        margin: 1rem;
+    }
 }

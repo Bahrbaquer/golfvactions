@@ -98,16 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set the minimum start date immediately
     startInput.min = minStartDateString;
 
-    // Ensure the end date cannot be earlier than the start date
-    startInput.addEventListener('change', () => {
-        const startDate = new Date(startInput.value);
-        if (startDate < minStartDate) {
-            alert(`Start date must be at least 2 weeks from today (${minStartDateString}).`);
-            startInput.value = ''; // Clear invalid input
-        } else {
-            endInput.min = startInput.value; // Update the minimum end date
-        }
-    });
+
 
     endInput.addEventListener('change', () => {
         const startDate = new Date(startInput.value);
@@ -164,77 +155,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Page 2 Golfer Information Page
 document.addEventListener('DOMContentLoaded', () => {
-    const groupSizeInput = document.getElementById('group-size');
     const groupDetailsContainer = document.getElementById('group-details');
+    const addGolferButton = document.getElementById('add-golfer');
     const summaryTableContainer = document.getElementById('summary-table-container');
     const summaryTableBody = document.querySelector('#summary-table tbody');
+    const totalGolfersElement = document.getElementById('total-golfers');
+    let golferCount = 0;
 
-    // Function to populate golfer inputs based on group size
-    function populateGolferInputs(groupSize) {
-        groupDetailsContainer.innerHTML = ''; // Clear existing inputs
-        summaryTableBody.innerHTML = ''; // Clear the summary table
+    // Function to update the summary table
+    function updateSummaryTable() {
+        const golfers = document.querySelectorAll('.golfer-details');
+        summaryTableBody.innerHTML = ''; // Clear the table
 
-        for (let i = 1; i <= groupSize; i++) {
-            const golferDiv = document.createElement('div');
-            golferDiv.classList.add('golfer-details');
-            golferDiv.innerHTML = `
-                <label for="golfer-name-${i}">Golfer ${i} Name:</label>
-                <input type="text" id="golfer-name-${i}" name="golfer-name-${i}" required>
-                <br>
-                <label>
-                    <input type="checkbox" id="club-rental-${i}" name="club-rental-${i}">
-                    Needs Rental Clubs
-                </label>
-                <label>
-                    <input type="checkbox" id="needs-travel-${i}" name="needs-travel-${i}">
-                    Needs Travel
-                </label>
-            `;
-            groupDetailsContainer.appendChild(golferDiv);
+        golfers.forEach((golfer, index) => {
+            const golferNameInput = golfer.querySelector('.golfer-name');
+            const clubRentalCheckbox = golfer.querySelector('.club-rental');
+            const travelCheckbox = golfer.querySelector('.needs-travel');
 
-            // Add a row to the summary table
             const row = document.createElement('tr');
-            row.id = `summary-row-${i}`;
             row.innerHTML = `
-                <td id="golfer-name-cell-${i}">Golfer ${i}</td>
-                <td id="club-rental-cell-${i}">No</td>
-                <td id="travel-cell-${i}">No</td>
+                <td>${golferNameInput.value || `Golfer ${index + 1}`}</td>
+                <td>${clubRentalCheckbox.checked ? 'Yes' : 'No'}</td>
+                <td>${travelCheckbox.checked ? 'Yes' : 'No'}</td>
             `;
             summaryTableBody.appendChild(row);
+        });
 
-            // Add event listeners for checkboxes
-            const clubRentalCheckbox = golferDiv.querySelector(`#club-rental-${i}`);
-            const travelCheckbox = golferDiv.querySelector(`#needs-travel-${i}`);
-            const golferNameInput = golferDiv.querySelector(`#golfer-name-${i}`);
+        // Update total golfers count
+        totalGolfersElement.textContent = golfers.length;
 
-            clubRentalCheckbox.addEventListener('change', () => {
-                const cell = document.getElementById(`club-rental-cell-${i}`);
-                cell.textContent = clubRentalCheckbox.checked ? 'Yes' : 'No';
-            });
-
-            travelCheckbox.addEventListener('change', () => {
-                const cell = document.getElementById(`travel-cell-${i}`);
-                cell.textContent = travelCheckbox.checked ? 'Yes' : 'No';
-            });
-
-            golferNameInput.addEventListener('input', () => {
-                const cell = document.getElementById(`golfer-name-cell-${i}`);
-                cell.textContent = golferNameInput.value || `Golfer ${i}`;
-            });
-        }
-
-        // Show the summary table if group size > 0
-        summaryTableContainer.style.display = groupSize > 0 ? 'block' : 'none';
+        // Show or hide the summary table
+        summaryTableContainer.style.display = golfers.length > 0 ? 'block' : 'none';
     }
 
-    // Event listener for group size input
-    groupSizeInput.addEventListener('input', () => {
-        const groupSize = parseInt(groupSizeInput.value, 10);
-        if (groupSize > 0 && groupSize <= 20) {
-            populateGolferInputs(groupSize);
-        } else {
-            groupDetailsContainer.innerHTML = ''; // Clear inputs if invalid
-            summaryTableContainer.style.display = 'none'; // Hide the summary table
-        }
-    });
+    // Function to add a new golfer
+    function addGolfer() {
+        golferCount++;
+        const golferDiv = document.createElement('div');
+        golferDiv.classList.add('golfer-details');
+        golferDiv.innerHTML = `
+            <label for="golfer-name-${golferCount}">Golfer Name:</label>
+            <input type="text" id="golfer-name-${golferCount}" class="golfer-name" name="golfer-name-${golferCount}" required>
+            <div class="flex-2">
+            <div>
+            <label>
+                <input type="checkbox" class="club-rental" id="club-rental-${golferCount}">
+                Rental Clubs
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" class="needs-travel" id="needs-travel-${golferCount}">
+                Needs Travel
+            </label>
+            </div>
+            <div>
+            <button type="button" class="remove-golfer">remove</button>
+            </div>
+            </div>
+        `;
+        groupDetailsContainer.appendChild(golferDiv);
+
+        // Add event listeners for the new golfer
+        golferDiv.querySelector('.golfer-name').addEventListener('input', updateSummaryTable);
+        golferDiv.querySelector('.club-rental').addEventListener('change', updateSummaryTable);
+        golferDiv.querySelector('.needs-travel').addEventListener('change', updateSummaryTable);
+        golferDiv.querySelector('.remove-golfer').addEventListener('click', () => {
+            golferDiv.remove();
+            updateSummaryTable();
+        });
+
+        updateSummaryTable();
+    }
+
+    // Event listener for "Add Golfer" button
+    addGolferButton.addEventListener('click', addGolfer);
+
+    // Initialize with one golfer
+    addGolfer();
 });
