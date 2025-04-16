@@ -67,8 +67,7 @@ textarea {
 }
 /* Button Styles */
 button {
-    display: block;
-    width: 100%;
+    display: inline;
     padding: 10px 15px;
     background-color: #28a745;
     color: white;
@@ -97,4 +96,72 @@ button:hover {
     margin: 0;
     font-size: 1.5rem;
     color: #2c3e50;
+}
+.form-page {
+    display: none;
+}
+
+.form-page:first-child {
+    display: block;
+}
+
+#trip-days {
+    display:flex;
+    flex-wrap: wrap;
+}
+.trip-day {
+    width: 100%;
+    padding: 0 .5rem;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px #0000004a;
+    border-radius: 10px;
+    margin: .5rem;
+    padding: .5rem 1rem;
+}
+.trip-day h4 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.trip-day h6 {
+    font-size: .8rem;
+    text-align: center;
+    margin:0;
+    padding:0;
+}
+.trip-day label {
+    display:inline;
+    margin-bottom:0;
+}
+.trip-day input {
+    width:auto;
+}
+.golfer-details {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+#summary-table-container {
+    padding: .8rem;
+    background-color: #000000cc;
+    margin: 1rem;
+    border-radius: 10px;
+    color: white;
+}
+#summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#summary-table th, #summary-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+#summary-table th {
+    background-color: #f4f4f4;
+    color:black;
 }
