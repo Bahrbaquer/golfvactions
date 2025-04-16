@@ -24,9 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Disable the end date input initially
     endInput.disabled = true;
 
-    // Disable manual typing in the date inputs
-    startInput.addEventListener('keydown', (e) => e.preventDefault());
-    endInput.addEventListener('keydown', (e) => e.preventDefault());
+    // Disable manual typing in the date inputs (removed keydown event listener)
+    startInput.addEventListener('input', () => {
+        // Ensure the input is valid and matches the minimum date
+        if (new Date(startInput.value) < new Date(startInput.min)) {
+            startInput.value = ''; // Clear invalid input
+        }
+    });
+
+    endInput.addEventListener('input', () => {
+        // Ensure the input is valid and matches the minimum date
+        if (new Date(endInput.value) < new Date(endInput.min)) {
+            endInput.value = ''; // Clear invalid input
+        }
+    });
 
     // Function to calculate total days and populate trip days
     function calculateTotalDays() {
