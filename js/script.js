@@ -88,6 +88,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const startInput = document.getElementById('start-of-trip');
+    const endInput = document.getElementById('end-of-trip');
+    const today = new Date();
+    const minStartDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000); // Add 14 days
+    const minStartDateString = minStartDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+
+    // Set the minimum start date
+    startInput.min = minStartDateString;
+
+    // Validate the start date on input
+    startInput.addEventListener('input', () => {
+        const startDate = new Date(startInput.value);
+        if (startDate < minStartDate) {
+            alert(`Start date must be at least 2 weeks from today (${minStartDateString}).`);
+            startInput.value = ''; // Clear invalid input
+        }
+        // Update the minimum end date based on the selected start date
+        if (startInput.value) {
+            endInput.min = startInput.value;
+        }
+    });
+
+    // Validate the end date on input
+    endInput.addEventListener('input', () => {
+        const startDate = new Date(startInput.value);
+        const endDate = new Date(endInput.value);
+        if (endDate < startDate) {
+            alert('End date must be after the start date.');
+            endInput.value = ''; // Clear invalid input
+        }
+    });
+});
+
 // form to have multiple pages
 document.addEventListener('DOMContentLoaded', () => {
     const pages = document.querySelectorAll('.form-page');
@@ -149,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             golferDiv.innerHTML = `
                 <label for="golfer-name-${i}">Golfer ${i} Name:</label>
                 <input type="text" id="golfer-name-${i}" name="golfer-name-${i}" required>
+                <br>
                 <label>
                     <input type="checkbox" id="club-rental-${i}" name="club-rental-${i}">
                     Needs Rental Clubs
