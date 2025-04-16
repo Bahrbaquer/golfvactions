@@ -4,19 +4,29 @@ function toggleNav() {
     toggleNav.classList.toggle('openMenu');
 }
 
-// Calculator for total number of days in the trip
+// Main functionality
 document.addEventListener('DOMContentLoaded', () => {
-    const startInput = document.getElementById('start-of-trip');
-    const endInput = document.getElementById('end-of-trip');
-    const totalDaysElement = document.getElementById('totalDays');
+    const startInput = document.getElementById('start-of-trip'); // Start date input
+    const endInput = document.getElementById('end-of-trip'); // End date input
+    const totalDaysElement = document.getElementById('totalDays'); // Element to display total trip days
     const tripDaysContainer = document.createElement('div'); // Container for trip days
+    const tripSummaryContainer = document.getElementById('trip-summary-container'); // Trip summary container
     tripDaysContainer.id = 'trip-days';
-    totalDaysElement.insertAdjacentElement('afterend', tripDaysContainer); // Add below totalDays
+    totalDaysElement.insertAdjacentElement('afterend', tripDaysContainer); // Add trip days container below totalDays
 
     // Set the minimum start date to 2 weeks from today
     const today = new Date();
-    const minStartDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000); // Add 14 days
-    startInput.min = minStartDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    const minStartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 14); // Add 14 days
+    const minStartDateString = minStartDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    startInput.min = minStartDateString; // Set the minimum start date
+    startInput.value = ''; // Leave the start date empty initially
+
+    // Disable the end date input initially
+    endInput.disabled = true;
+
+    // Disable manual typing in the date inputs
+    startInput.addEventListener('keydown', (e) => e.preventDefault());
+    endInput.addEventListener('keydown', (e) => e.preventDefault());
 
     // Function to calculate total days and populate trip days
     function calculateTotalDays() {
@@ -30,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (totalDays > 0) {
                 totalDaysElement.textContent = `Total Trip Length: ${totalDays} days`;
                 populateTripDays(totalDays);
+                updateTripSummary(totalDays); // Update the trip summary
             } else {
-                totalDaysElement.textContent = 'End date must be after the start date.';
+                totalDaysElement.textContent = ''; // Clear the message if dates are invalid
                 clearTripDays();
             }
         } else {
@@ -42,10 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to populate trip days with radio buttons for holes
     function populateTripDays(totalDays) {
-        // Clear any existing days
-        tripDaysContainer.innerHTML = '';
+        tripDaysContainer.innerHTML = ''; // Clear any existing days
 
-        // Generate divs for each day
         for (let i = 1; i <= totalDays; i++) {
             const dayDiv = document.createElement('div');
             dayDiv.classList.add('trip-day');
@@ -53,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dayDiv.innerHTML = `
                 <h4>Day ${i}</h4>
                 <h6># of Holes</h6>
-                <input type="radio" id="zero-day-${i}" name="Day${i}" value="0">
+                <input type="radio" id="zero-day-${i}" name="Day${i}" value="0" checked>
                 <label for="zero-day-${i}">0 Holes</label>
                 <br>
                 <input type="radio" id="nine-day-${i}" name="Day${i}" value="9">
@@ -70,49 +79,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 <br>
             `;
             tripDaysContainer.appendChild(dayDiv);
+
+            // Add event listeners to update the summary when a radio button is selected
+            const radios = dayDiv.querySelectorAll('input[type="radio"]');
+            radios.forEach((radio) => {
+                radio.addEventListener('change', () => updateTripSummary(totalDays));
+            });
         }
     }
 
     // Function to clear trip days
     function clearTripDays() {
         tripDaysContainer.innerHTML = ''; // Clear all days
+        tripSummaryContainer.innerHTML = ''; // Clear the trip summary
     }
 
-    // Attach event listeners to both date inputs
-    startInput.addEventListener('change', calculateTotalDays);
-    endInput.addEventListener('change', calculateTotalDays);
+    // Function to update the trip summary
+    function updateTripSummary(totalDays) {
+        tripSummaryContainer.innerHTML = ''; // Clear existing summary
 
-    // Ensure the end date cannot be earlier than the start date
+        for (let i = 1; i <= totalDays; i++) {
+            const selectedHoles = document.querySelector(`input[name="Day${i}"]:checked`).value;
+            const daySummary = document.createElement('div');
+            daySummary.classList.add('trip-summary-day');
+            daySummary.innerHTML = `
+                <h4>Day ${i}:</h4>
+                <p>${selectedHoles} Holes</p>
+            `;
+            tripSummaryContainer.appendChild(daySummary);
+        }
+    }
+
+    // Event listener for start date input
     startInput.addEventListener('change', () => {
-        endInput.min = startInput.value; // Set end date to be no earlier than the start date
+        const startDate = new Date(startInput.value);
+        if (startDate >= minStartDate) {
+            endInput.disabled = false; // Enable the end date input
+            endInput.min = startInput.value; // Update the minimum end date to match the selected start date
+        } else {
+            startInput.value = ''; // Clear invalid input
+            endInput.disabled = true; // Keep the end date disabled
+        }
+        calculateTotalDays();
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const startInput = document.getElementById('start-of-trip');
-    const endInput = document.getElementById('end-of-trip');
-    const today = new Date();
-    const minStartDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000); // Add 14 days
-    const minStartDateString = minStartDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
-
-    // Set the minimum start date immediately
-    startInput.min = minStartDateString;
-
-
-
+    // Event listener for end date input
     endInput.addEventListener('change', () => {
         const startDate = new Date(startInput.value);
         const endDate = new Date(endInput.value);
         if (endDate < startDate) {
-            alert('End date must be after the start date.');
             endInput.value = ''; // Clear invalid input
         }
+        calculateTotalDays();
     });
-});
 
-// form to have multiple pages
-document.addEventListener('DOMContentLoaded', () => {
-    const pages = document.querySelectorAll('.form-page');
+    // Form navigation for multiple pages
+    const pages = document.querySelectorAll('.form-page'); // All form pages
     let currentPage = 0; // Start on the first page
 
     // Navigation buttons
@@ -121,14 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextToPage3 = document.getElementById('next-to-page-3');
     const backToPage2 = document.getElementById('back-to-page-2');
 
-    // Show the current page and hide others
+    // Function to show the current page and hide others
     function showPage(pageIndex) {
         pages.forEach((page, index) => {
             page.style.display = index === pageIndex ? 'block' : 'none';
         });
     }
 
-    // Event listeners for navigation
+    // Event listeners for navigation buttons
     nextToPage2.addEventListener('click', () => {
         currentPage = 1; // Move to Page 2
         showPage(currentPage);
@@ -151,15 +173,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show the first page initially
     showPage(currentPage);
-});
 
-// Page 2 Golfer Information Page
-document.addEventListener('DOMContentLoaded', () => {
-    const groupDetailsContainer = document.getElementById('group-details');
-    const addGolferButton = document.getElementById('add-golfer');
-    const summaryTableContainer = document.getElementById('summary-table-container');
-    const summaryTableBody = document.querySelector('#summary-table tbody');
-    const totalGolfersElement = document.getElementById('total-golfers');
+    // Golfer Information Page (Page 2)
+    const groupDetailsContainer = document.getElementById('group-details'); // Container for golfer details
+    const addGolferButton = document.getElementById('add-golfer'); // Button to add a new golfer
+    const summaryTableContainer = document.getElementById('summary-table-container'); // Summary table container
+    const summaryTableBody = document.querySelector('#summary-table tbody'); // Table body for golfer summary
+    const totalGolfersElement = document.getElementById('total-golfers'); // Element to display total golfers
     let golferCount = 0;
 
     // Function to update the summary table

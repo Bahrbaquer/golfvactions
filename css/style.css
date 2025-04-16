@@ -36,22 +36,7 @@ a {
     left:10px;
     height:60px;
 }
-#price-estimate {
-    padding: 10px;
-    margin-bottom:1.2rem;
-    background-color: #f4f4f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
-    position:sticky;
-    top:0;
-}
 
-#price-estimate h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #2c3e50;
-}
 /* Hero Section */
 .hero {
     background: url('../images/banner.jpg');
@@ -255,11 +240,11 @@ footer {
     color: white;
 }
 .mobileMenu {
-    width:50px;
+    width:40px;
     height:50px;
     position: fixed;
     top:.8rem;
-    right:.8rem;
+    left:.8rem;
     z-index: 999;
     display: none;
 }
@@ -289,6 +274,9 @@ footer {
     height:5px;
     background-color:black;
 }
+.mobileLogo {
+    display: none;
+}
 @media (max-width: 768px) {
     .hero {
         background-attachment: scroll;
@@ -304,22 +292,28 @@ footer {
         display: block;
     }
     .mainNav {
-        padding:1.7rem 0;
+        padding:7rem 0;
         position: fixed;
         transition: .25s;
+        background-color: transparent;
         height: 0;
     }
     .mainNav ul {
         display: none;
     }
+    .mainNav ul li a {
+        font-size: 2rem;
+    }
     .openMenu {
         height:100vh;
+        background-color: rgba(255, 255, 255, 0.891);
     }
     .openMenu ul {
         display: flex;
         height: 50%;
         flex-direction: column;
         justify-content: space-evenly;
+        
     }
     .mainNav ul li:last-child {
         margin-left:0;

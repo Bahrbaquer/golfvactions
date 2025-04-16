@@ -100,7 +100,7 @@ button:hover {
 }
 
 .trip-day {
-    width: 100%;
+    flex: 30%;
     box-sizing: border-box;
     box-shadow: 0px 0px 5px #0000004a;
     border-radius: 10px;
@@ -136,7 +136,7 @@ button:hover {
 /* Summary Table */
 #summary-table-container {
     padding: .8rem;
-    background-color: #000000cc;
+    background-color: #28a745d6;
     margin: 1rem;
     border-radius: 10px;
     color: white;
@@ -171,6 +171,35 @@ button:hover {
 .remove-golfer:hover {
     background-color: darkred;
 }
+#price-estimate {
+    padding: 10px;
+    margin-bottom:1.2rem;
+    background-color: #f4f4f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#price-estimate h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+#trip-summary-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.trip-summary-day {
+    flex: 25%;
+}
+.trip-summary-day h4, .trip-summary-day p {
+    margin:0;
+}
+
+
+
+
 
 /* Responsive Design */
 @media (max-width: 810px) {
