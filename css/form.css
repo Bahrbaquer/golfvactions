@@ -1,209 +1,96 @@
-/* General Form Styles */
-form {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
+/* General Form Styling */
+#trip-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-form h3 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #333;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
+/* Form Labels */
+#trip-form label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
     font-weight: bold;
     color: #333;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+/* Form Inputs */
+#trip-form input,
+#trip-form select {
     width: 100%;
-    padding: 10px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 1rem;
     box-sizing: border-box;
 }
-
-textarea {
-    resize: vertical;
+input#golfers{
+    width:70px;
 }
 
-.standout {
-    font-weight: bold;
-    font-style: italic;
+/* Input Focus State */
+#trip-form input:focus,
+#trip-form select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
 }
 
-/* Flexbox for Layout */
-.flex-container {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.flex-container .form-group {
-    flex: 1;
-    margin-bottom: 0;
-}
-
-/* Button Styles */
-button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
+/* Submit Button */
+#trip-form button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #218838;
+#trip-form button:hover {
+    background-color: #0056b3;
 }
 
-#add-golfer {
-    background-color: #333;
-    margin: 0 auto;
-    width: 100%;
-    margin-bottom: .8rem;
+/* creating columns on the line */
+.flexContainer {
+    display:flex;
+}
+.flexContainer div {
+    margin:0 1rem 0 0;
+    flex: 1;
+}
+/* sub heading text */
+.infoText {
+    font-style:italic;
+    color:green;
 }
 
-/* Form Pages */
-.form-page {
-    display: none;
-}
-
-.form-page:first-child {
-    display: block;
-}
-
-/* Trip Days */
-#trip-days {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.trip-day {
-    flex: 30%;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 5px #0000004a;
-    border-radius: 10px;
-    margin: .5rem;
-    padding: .5rem 1rem;
-    background-color: #f9f9f9;
-}
-
-.trip-day h4, .trip-day h6 {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-
-.trip-day label {
-    display: inline;
-    margin-bottom: 0;
-}
-
-.trip-day input {
-    width: auto;
-}
-
-/* Golfer Details */
-.golfer-details {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-/* Summary Table */
-#summary-table-container {
-    padding: .8rem;
-    background-color: #28a745d6;
-    margin: 1rem;
-    border-radius: 10px;
-    color: white;
-}
-
-#summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-#summary-table th, #summary-table td {
-    padding: 10px;
-    text-align: left;
-}
-
-#summary-table th {
-    background-color: #f4f4f4;
-    color: black;
-}
-
-.remove-golfer {
-    background-color: red;
-    margin-left: 2rem;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.remove-golfer:hover {
-    background-color: darkred;
-}
-#price-estimate {
-    padding: 10px;
-    margin-bottom:1.2rem;
-    background-color: #f4f4f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#price-estimate h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #2c3e50;
-}
-#trip-summary-container {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
-.trip-summary-day {
-    flex: 25%;
-}
-.trip-summary-day h4, .trip-summary-day p {
-    margin:0;
-}
 
 
 
 
 
 /* Responsive Design */
-@media (max-width: 810px) {
-    form {
-        margin: 1rem;
+@media (max-width: 768px) {
+    #trip-form {
+        padding: 1rem;
+    }
+
+    #trip-form input,
+    #trip-form select {
+        font-size: 0.9rem;
+    }
+
+    #trip-form button {
+        font-size: 0.9rem;
     }
 }

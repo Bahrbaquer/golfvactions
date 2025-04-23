@@ -11,68 +11,44 @@
 <body class="stGeorgeform">
     <header>
         <a href="index.html"><img src="images/logo.png" class="logoalt" alt=""></a>
-        <p>Customize your golf trip in <br>St. George UT!</p>
     </header>
     <form action="" method="GET" id="trip-form">
-
-        <!-- Page 1: Trip Information -->
-        <div class="form-page" id="page-1">
-            <h3>Trip Durration</h3>
-            <div class="form-group">
-                <div class="form-row-2">
-                    <div>
-                        <label for="start-of-trip">Start of Trip</label>
-                        <input type="date" id="start-of-trip">
-                    </div>
-                    <div>
-                        <label for="end-of-trip">End of Trip</label>
-                        <input type="date" id="end-of-trip">
-                    </div>
-                </div>
-                <p id="totalDays" class="standout"></p>
+        <!-- Recommended Package -->
+        <label for="package">Customize the St George Package:</label>
+            <br>
+       
+         <div class="flexContainer">
+            <div>
+                <!-- Number of Days -->
+                <label for="days">Number of Golf Days:</label>
+                <input type="number" id="days" name="days" value="3" min="1" required>
             </div>
-            <button type="button" id="next-to-page-2">Next</button>
-        </div>
+            <div>
+                <!-- Number of Holes -->
+                <label for="holes">Number of Holes:</label>
+                <input type="number" id="holes" name="holes" value="18" min="9" step="9" required>
+            </div>
+         </div>
+        <h4 class="infoText"><span id="average_holes"></span></h4>
+       
+        <!-- Date Range -->
+         <div class="flexContainer">
+            <div>
+                <label for="start-date">Potential Start Date:</label>
+                <input type="date" id="start-date" name="start-date" required>
+            </div>
+            <div>
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" name="end-date" required>
+            </div>
+         </div>
+        <!-- Number of Golfers -->
+        <label for="golfers">Number of Golfers:</label>
+        <input type="number" id="golfers" name="golfers" value="4" min="1" required>
     
-      <!-- Page 2: Group Information -->
-        <div class="form-page" id="page-2" style="display: none;">
-            <h3>Group Information</h3>
-            <div id="group-details"></div>
-            <button type="button" id="add-golfer">Add Golfer</button>
-
-            <button type="button" id="back-to-page-1">Back</button>
-            <button type="button" id="next-to-page-3">Next</button>
-        </div>
-    
-        <!-- Page 3: Additional Information -->
-        <div class="form-page" id="page-3" style="display: none;">
-            <h3>Additional Information</h3>
-            <p>Additional form content can go here.</p>
-            <button type="button" id="back-to-page-2">Back</button>
-            <button type="submit">Submit</button>
-        </div>
-
+        
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
     </form>
-    <div id="summary-table-container" style="display: none;">
-        <h4>Summary</h4>
-        <div id="price-estimate">
-            <h3>Estimated Price: <span id="price">$0</span></h3>
-        </div>
-            <!-- New trip summary section -->
-        <div id="trip-summary-container">
-        <!-- Trip summary will be dynamically added here -->
-        </div>
-        <p>Total Golfers: <span id="total-golfers">0</span></p>
-        <table id="summary-table" border="1">
-            <thead>
-                <tr>
-                    <th>Golfer Name</th>
-                    <th>Rental Clubs</th>
-                    <th>Travel</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
 </body>
 </html>
