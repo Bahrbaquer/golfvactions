@@ -164,3 +164,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!contactTextCheckbox.checked) textInput.value = ''; // Clear input if unchecked
     });
 });
+
+    // gets to top of form pages
+    document.addEventListener('DOMContentLoaded', () => {
+        const pages = document.querySelectorAll('.form-page');
+        let currentPage = 0;
+    
+        // Show the current page and hide the others
+        function showPage(pageIndex) {
+            pages.forEach((page, index) => {
+                page.style.display = index === pageIndex ? 'block' : 'none';
+            });
+    
+            // Scroll to the top of the form
+            document.getElementById('trip-form').scrollIntoView({ behavior: 'smooth' });
+        }
+    
+        // Move to the next page
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+    
+        // Move to the previous page
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+    
+        // Attach event listeners to navigation buttons
+        document.getElementById('next-1').addEventListener('click', nextPage);
+        document.getElementById('next-2').addEventListener('click', nextPage);
+        document.getElementById('prev-2').addEventListener('click', prevPage);
+        document.getElementById('prev-3').addEventListener('click', prevPage);
+    
+        // Initialize the first page
+        showPage(currentPage);
+    });
