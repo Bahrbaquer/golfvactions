@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 1; i <= numTravelers; i++) {
             const label = document.createElement('label');
             label.setAttribute('for', `departure-city-${i}`);
-            label.textContent = `Departure City for Traveler ${i}:`;
+            label.textContent = `Departure City/Zip for Traveler ${i}:`;
 
             const input = document.createElement('input');
             input.setAttribute('type', 'text');
