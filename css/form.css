@@ -1,7 +1,13 @@
 /* General Form Styling */
+.estimate_price {
+    width: 100%;
+    background-color: white;
+    padding:1rem 0;
+    text-align: center;
+}
 #trip-form {
     max-width: 600px;
-    margin: 2rem auto;
+    margin: 0rem auto;
     padding: 1.5rem;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
