@@ -13,26 +13,28 @@
         <a href="index.html"><img src="images/logo.png" class="logoalt" alt=""></a>
     </header>
     <form action="" method="GET" id="trip-form">
+        <label for="package" style="text-align: center;">Customize the St George Package:</label>
+        <!-- Page 1 -->
+         <div class="form-page" id="page-1">
         <!-- Recommended Package -->
-        <label for="package">Customize the St George Package:</label>
-            <br>
-       
+        <h3 class="form-page-heading">Golf Details:</h3>
+            <p class="section-note">
+                Planning 4 golf days and 7 rounds? This can be split however you'd like: mix in two 27-hole days, with two 36-hole days, or whatever pace you prefer.
+              </p>
          <div class="flexContainer">
             <div>
                 <!-- Number of Days -->
                 <label for="days">Number of Golf Days:</label>
-                <input type="number" id="days" name="days" value="3" min="1" required>
+                <input type="number" id="days" name="days" value="4" min="1" required>
             </div>
             <div>
                 <!-- Number of Holes -->
-                <label for="holes">Number of Holes:</label>
-                <input type="number" id="holes" name="holes" value="18" min="9" step="9" required>
+                <label for="holes">Total 18 Hole Rounds:</label>
+                <input type="number" id="holes" name="holes" value="7" min="1" step=".5" required>
             </div>
          </div>
-        <h4 class="infoText"><span id="average_holes"></span></h4>
-       
-        <!-- Date Range -->
          <div class="flexContainer">
+                    <!-- Date Range -->
             <div>
                 <label for="start-date">Potential Start Date:</label>
                 <input type="date" id="start-date" name="start-date" required>
@@ -42,13 +44,166 @@
                 <input type="date" id="end-date" name="end-date" required>
             </div>
          </div>
-        <!-- Number of Golfers -->
-        <label for="golfers">Number of Golfers:</label>
-        <input type="number" id="golfers" name="golfers" value="4" min="1" required>
-    
-        
-        <!-- Submit Button -->
+         <div class="flexContainer">
+                    <!-- Number of Golfers -->
+            <div>
+                <label for="golfers">Number of Golfers:</label>
+                <input type="number" id="golfers" name="golfers" value="4" min="1" required>
+            </div>
+            <div>
+                <label for="rentals">Rental Clubs:</label>
+                <input type="number" id="rentals" name="club-rentals" value="0" min="0" required>
+            </div>
+         </div>
+         <div class="flexContainer">
+            <button type="button" id="next-1">Next</button>
+         </div>
+         
+
+        </div>
+        <!-- Page 2 -->
+<div class="form-page" id="page-2" style="display: none;">
+    <h3 class="form-page-heading">Travel and Lodging</h3>
+
+    <!-- Travel Section -->
+    <div>
+        <label for="travel-needed">Do you need travel?</label>
+        <input type="radio" id="travel-needed" name="travel-needed" value="Yes-Travel-Needed">
+        <label for="travel-needed" class="radio-display">yes</label>
+        <br>
+        <input type="radio" id="no-travel-needed" name="travel-needed" value="none">
+        <label for="no-travel-needed" class="radio-display">no</label>
+    </div>
+
+    <!-- Travel Details (conditionally shown if travel is needed) -->
+    <div id="travel-details" style="display: none;">
+        <div>
+            <label for="num-travelers">How Many Travelers?</label>
+            <input type="number" id="num-travelers" name="num-travelers" min="1" value="1">
+        </div>
+        <div id="departure-cities">
+            <label for="departure-city-1">Departure City for Traveler 1:</label>
+            <input type="text" id="departure-city-1" name="departure-city-1" placeholder="Enter city">
+        </div>
+    </div>
+
+    <!-- Transportation at Destination -->
+    <div>
+        <label for="transportation-needed">Do you need transportation at the destination?</label>
+        <input type="radio" id="transportation-needed" name="transportation-needed" value="Yes-Transportation-needed">
+        <label for="transportation-needed" class="radio-display">yes</label>
+        <br>
+        <input type="radio" id="no-transportation-needed" name="transportation-needed" value="none">
+        <label for="no-transportation-needed" class="radio-display">no</label>
+    </div>
+
+    <!-- Transportation Details (conditionally shown if transportation is needed) -->
+    <div id="transportation-details" style="display: none;">
+        <div>
+            <label for="num-seats">How many seats?</label>
+            <input type="number" id="num-seats" name="num-seats" min="1">
+        </div>
+    </div>
+
+    <!-- Lodging Section -->
+    <div>
+        <label for="lodging">Do you need lodging?</label>
+        <select id="lodging" name="lodging" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="vrbo">VRBO</option>
+            <option value="condo">Condo</option>
+            <option value="hotel">Hotel Rooms</option>
+            <option value="none">No Lodging Needed</option>
+        </select>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flexContainer">
+        <button type="button" id="prev-2">Previous</button>
+        <button type="button" id="next-2">Next</button>
+    </div>
+</div>
+
+    <!-- Page 3 -->
+<div class="form-page" id="page-3" style="display: none;">
+    <h3 class="form-page-heading">Meals & Extras</h3>
+    <p class="section-note">
+        We can purchase vouchers at some clubhouses for you to enjoy a meal before, at the turn, or after the round at a discounted price. Would you like to add breakfast, lunch, or dinner vouchers?
+    </p>
+
+    <!-- Meal Vouchers -->
+    <div>
+        <label for="breakfast-vouchers">Breakfast Vouchers:</label>
+        <input type="number" id="breakfast-vouchers" name="breakfast-vouchers" min="0" value="0">
+    </div>
+    <div>
+        <label for="lunch-vouchers">Lunch Vouchers:</label>
+        <input type="number" id="lunch-vouchers" name="lunch-vouchers" min="0" value="0">
+    </div>
+    <div>
+        <label for="dinner-vouchers">Dinner Vouchers:</label>
+        <input type="number" id="dinner-vouchers" name="dinner-vouchers" min="0" value="0">
+    </div>
+
+    <!-- Spa Treatments -->
+    <div>
+        <label for="spa-treatments">Would you like to add spa treatments?</label>
+        <input type="radio" id="spa-treatments" name="spa-treatments" value="yes-spa-treatments">
+        <label for="spa-treatments" class="radio-display">yes</label>
+        <br>
+        <input type="radio" id="no-spa" name="spa-treatments" value="none">
+        <label for="no-sap" class="radio-display">no</label>
+    </div>
+
+    <!-- Group Contests / Prizes -->
+    <div>
+        <label for="group-contests">Would you like to add group contests or prizes?</label>
+        <input type="radio" id="group-contests" name="group-contests" value="yes-group-contests">
+        <label for="group-contests" class="radio-display">yes</label>
+        <br>
+        <input type="radio" id="no-group-contests" name="group-contests" value="no-group-contests">
+        <label for="no-group-contests" class="radio-display">no</label>
+    </div>
+
+    <!-- How Did You Hear About Us -->
+    <div>
+        <label for="how-hear">How did you hear about us?</label>
+        <input type="text" id="how-hear" name="how-hear" placeholder="Enter your response">
+    </div>
+
+    <!-- Best Contact Method -->
+    <div>
+        <label>Best Contact Method:</label>
+        <div>
+            <input type="checkbox" id="contact-email" name="contact-method" value="email">
+            <label for="contact-email" class="radio-display">Email</label>
+            <input type="email" id="email-input" name="email" placeholder="Enter your email" style="display: none;">
+        </div>
+        <div>
+            <input type="checkbox" id="contact-phone" name="contact-method" value="phone">
+            <label for="contact-phone" class="radio-display">Phone Call</label>
+            <input type="tel" id="phone-input" name="phone" placeholder="Enter your phone number" style="display: none;">
+        </div>
+        <div>
+            <input type="checkbox" id="contact-text" name="contact-method" value="text">
+            <label for="contact-text" class="radio-display">Text</label>
+            <input type="tel" id="text-input" name="text" placeholder="Enter your phone number" style="display: none;">
+        </div>
+    </div>
+
+    <!-- Notes / Requests -->
+    <div>
+        <label for="notes">Notes, Requests, Expectations:</label>
+        <textarea id="notes" name="notes" rows="4" placeholder="Enter any additional information here"></textarea>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flexContainer">
+        <button type="button" id="prev-3">Previous</button>
         <button type="submit">Submit</button>
+    </div>
+</div>
+
     </form>
 </body>
 </html>

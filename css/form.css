@@ -9,7 +9,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
 }
-
+.form-page-heading {
+    font-weight: 100;
+    padding:1.3rem 2rem;
+    text-decoration: underline;
+}
 /* Form Labels */
 #trip-form label {
     display: block;
@@ -29,10 +33,20 @@
     font-size: 1rem;
     box-sizing: border-box;
 }
-input#golfers{
+#trip-form input[type="number"]{
     width:70px;
 }
-
+#trip-form .radio-display{
+    display:inline;
+    width:auto;
+}
+#trip-form input[type="radio"], #trip-form input[type="checkbox"]{
+    width:auto;
+    display:inline;
+}
+#trip-form #notes {
+    width:100%;
+}
 /* Input Focus State */
 #trip-form input:focus,
 #trip-form select:focus {
@@ -54,12 +68,18 @@ input#golfers{
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: .5rem 1rem;
 }
 
 #trip-form button:hover {
     background-color: #0056b3;
 }
-
+#trip-form button[type="submit"] {
+    background-color:#2e8b57;
+}
+#trip-form button[type="submit"]:hover {
+    background-color:#20633d;
+}
 /* creating columns on the line */
 .flexContainer {
     display:flex;
@@ -68,14 +88,26 @@ input#golfers{
     margin:0 1rem 0 0;
     flex: 1;
 }
-/* sub heading text */
-.infoText {
-    font-style:italic;
-    color:green;
+/* sections notes */
+.section-note {
+    background-color: #f5f7fa;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-left: 4px solid #2e8b57; /* A nice green accent */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    font-style: italic;
+  }
+/* form pages */
+.form-page {
+    display: none; /* Hide all pages by default */
 }
 
-
-
+.form-page:first-child {
+    display: block; /* Show the first page by default */
+}
 
 
 
